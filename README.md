@@ -22,8 +22,10 @@ El resultado final se espera que sea un sistema robusto y escalable que permita 
 
 Download the latest Kafka release and extract it:
 
+```
 $ tar -xzf kafka_2.13-3.6.1.tgz
 $ cd kafka_2.13-3.6.1
+```
 
 ### STEP 2: START THE KAFKA ENVIRONMENT
 
