@@ -1,6 +1,6 @@
 # MBID_TFM
 
-### Predicción de Tendencias de Precios de Criptomonedas en Tiempo Real Utilizando Técnicas de Procesamiento de Datos en Streaming
+**Predicción de Tendencias de Precios de Criptomonedas en Tiempo Real Utilizando Técnicas de Procesamiento de Datos en Streaming**
 
 El proyecto se centra en la predicción de tendencias de precios de criptomonedas en tiempo real mediante el uso de técnicas avanzadas de procesamiento de datos en streaming. La propuesta aborda el desafío de analizar y procesar grandes volúmenes de datos financieros provenientes de criptomonedas, con el objetivo de anticipar movimientos de precios.
 
@@ -18,7 +18,7 @@ El resultado final se espera que sea un sistema robusto y escalable que permita 
 
 [Apache Kafka Quickstart](https://kafka.apache.org/quickstart)
 
-### STEP 1: GET KAFKA
+**STEP 1: GET KAFKA**
 
 Download the latest Kafka release and extract it:
 
@@ -27,7 +27,7 @@ $ tar -xzf kafka_2.13-3.6.1.tgz
 $ cd kafka_2.13-3.6.1
 ```
 
-### STEP 2: START THE KAFKA ENVIRONMENT
+**STEP 2: START THE KAFKA ENVIRONMENT**
 
 NOTE: Your local environment must have Java 8+ installed.
 
@@ -68,7 +68,7 @@ $ bin/kafka-server-start.sh config/kraft/server.properties
 
 Once the Kafka server has successfully launched, you will have a basic Kafka environment running and ready to use.
 
-### STEP 3: CREATE A TOPIC TO STORE YOUR EVENTS
+**STEP 3: CREATE A TOPIC TO STORE YOUR EVENTS**
 
 Kafka is a distributed event streaming platform that lets you read, write, store, and process events (also called records or messages in the documentation) across many machines.
 
@@ -89,7 +89,7 @@ Topic: quickstart-events        TopicId: NPmZHyhbR9y00wMglMH2sg PartitionCount: 
     Topic: quickstart-events Partition: 0    Leader: 0   Replicas: 0 Isr: 0
 ```
 
-### STEP 4: WRITE SOME EVENTS INTO THE TOPIC
+**STEP 4: WRITE SOME EVENTS INTO THE TOPIC**
 
 A Kafka client communicates with the Kafka brokers via the network for writing (or reading) events. Once received, the brokers will store the events in a durable and fault-tolerant manner for as long as you need—even forever.
 
@@ -103,7 +103,7 @@ This is my second event
 
 You can stop the producer client with Ctrl-C at any time.
 
-### STEP 5: READ THE EVENTS
+**STEP 5: READ THE EVENTS**
 
 Open another terminal session and run the console consumer client to read the events you just created:
 
@@ -119,7 +119,7 @@ Feel free to experiment: for example, switch back to your producer terminal (pre
 
 Because events are durably stored in Kafka, they can be read as many times and by as many consumers as you want. You can easily verify this by opening yet another terminal session and re-running the previous command again.
 
-### STEP 6: IMPORT/EXPORT YOUR DATA AS STREAMS OF EVENTS WITH KAFKA CONNECT
+**STEP 6: IMPORT/EXPORT YOUR DATA AS STREAMS OF EVENTS WITH KAFKA CONNECT**
 
 You probably have lots of data in existing systems like relational databases or traditional messaging systems, along with many applications that already use these systems. Kafka Connect allows you to continuously ingest data from external systems into Kafka, and vice versa. It is an extensible tool that runs connectors, which implement the custom logic for interacting with an external system. It is thus very easy to integrate existing systems with Kafka. To make this process even easier, there are hundreds of such connectors readily available.
 
@@ -179,7 +179,7 @@ The connectors continue to process data, so we can add data to the file and see 
 
 You should see the line appear in the console consumer output and in the sink file.
 
-### STEP 7: PROCESS YOUR EVENTS WITH KAFKA STREAMS
+**STEP 7: PROCESS YOUR EVENTS WITH KAFKA STREAMS**
 
 Once your data is stored in Kafka as events, you can process the data with the Kafka Streams client library for Java/Scala. It allows you to implement mission-critical real-time applications and microservices, where the input and/or output data is stored in Kafka topics. Kafka Streams combines the simplicity of writing and deploying standard Java and Scala applications on the client side with the benefits of Kafka's server-side cluster technology to make these applications highly scalable, elastic, fault-tolerant, and distributed. The library supports exactly-once processing, stateful operations and aggregations, windowing, joins, processing based on event-time, and much more.
 
@@ -198,7 +198,7 @@ wordCounts.toStream().to("output-topic", Produced.with(Serdes.String(), Serdes.L
 
 The Kafka Streams demo and the app development tutorial demonstrate how to code and run such a streaming application from start to finish.
 
-### STEP 8: TERMINATE THE KAFKA ENVIRONMENT
+**STEP 8: TERMINATE THE KAFKA ENVIRONMENT**
 
 Now that you reached the end of the quickstart, feel free to tear down the Kafka environment—or continue playing around.
 
