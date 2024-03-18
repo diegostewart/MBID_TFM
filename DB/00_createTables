@@ -1,0 +1,41 @@
+CREATE TABLE IF NOT EXISTS dmsb_tfm.CandleSticks (
+    EVENT_TIME TIMESTAMP,
+    SYMBOL TEXT,
+    OPEN DOUBLE,
+    CLOSE DOUBLE,
+    HIGH DOUBLE,
+    LOW DOUBLE,
+    START_TIME TIMESTAMP,
+    CLOSE_TIME TIMESTAMP,
+    BASE_ASSET_VOLUME DOUBLE,
+    NUMBER_OF_TRADES INT,
+    QUOTE_ASSET_VOLUME DOUBLE,
+    KLINE_CLOSED BOOLEAN,
+    PRIMARY KEY (SYMBOL, EVENT_TIME)
+) WITH CLUSTERING ORDER BY (EVENT_TIME DESC);
+
+
+CREATE TABLE IF NOT EXISTS dmsb_tfm.CandleSticks_pred (
+    SYMBOL TEXT,
+    START_TIME TIMESTAMP,
+    OPEN DOUBLE,
+    HIGH DOUBLE,
+    LOW DOUBLE,
+    CLOSE DOUBLE,
+  PRIMARY KEY (SYMBOL,START_TIME)
+) WITH CLUSTERING ORDER BY (START_TIME DESC);
+
+/*
+However, retrieving the latest information directly based on timestamp may require a full scan of the partition to find the most recent entry.
+Por eso hacemos PK el resto de campos
+*/
+
+
+CREATE TABLE IF NOT EXISTS dmsb_tfm.configuration (
+    symbol text,
+    candle_number int,
+    ARIMA_p int,
+    ARIMA_d int,
+    ARIMA_q int,
+    PRIMARY KEY ((symbol))
+);

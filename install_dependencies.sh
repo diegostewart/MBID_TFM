@@ -33,7 +33,7 @@ download_and_extract() {
     tar -xvf "$(basename $URL)"
 
     # Rename the extracted directory
-    mv "$(tar -tf $(basename $URL) | head -1 | cut -f 1 -d '/')" "dependencies/$DIR"
+    mv "$(tar -tf $(basename $URL) | head -1 | cut -f 1 -d '/')" "context/$DIR"
 
     # Clean up downloaded archive
     rm "$(basename $URL)"
