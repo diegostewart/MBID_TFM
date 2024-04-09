@@ -30,7 +30,7 @@ app.layout = html.Div([
 
     html.Div([
         html.P('Nº of candles to perform ARIMA'),
-        dcc.Slider(0, 120, 5, value=20, id="candle_slider",)
+        dcc.Slider(0, 720, 36, value=720, id="candle_slider",)
     ], style={'width': '80%', 'margin': 'auto', 'text-align': 'center'}),
 
     html.Div([
@@ -83,8 +83,10 @@ app.layout = html.Div([
               prevent_initial_call=True
               )
 def update_config_values(n_clicks, candle_slider, value_p, value_d, value_q):
-    if all((n_clicks, candle_slider, value_p, value_d, value_q)):
+    if (not any(item is None or item == '' for item in (
+            n_clicks, candle_slider, value_p, value_d, value_q))):
         update_query = "UPDATE configuration SET candle_number=%s, ARIMA_p=%s, ARIMA_d=%s, ARIMA_q=%s WHERE symbol='BTCEUR'"
+        print(update_query)
         try:
             session.execute(update_query, (candle_slider,
                                            value_p, value_d, value_q))
@@ -113,7 +115,7 @@ def update_figure(n_intervals, slider_value):
     # We filter only to have the newest data for each time
     idx = df.groupby('start_time')['event_time'].idxmax()
     df = df.loc[idx]
-    df = df.sort_values(by='start_time', ascending=False)
+    df = df.sort_values(by='start_time', ascending=True)
 
     desired_columns = ['close', 'high', 'low', 'open', 'start_time']
 
@@ -124,7 +126,7 @@ def update_figure(n_intervals, slider_value):
                             'close': 'close_pred'}, inplace=True)
     merged_df = pd.merge(df_display, df_pred, on='start_time', how='inner')
 
-    merged_df = merged_df.head(slider_value)
+    merged_df = merged_df.tail(slider_value)
 
     candles = go.Figure(
         data=[
